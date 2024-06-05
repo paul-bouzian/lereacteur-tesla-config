@@ -14,8 +14,6 @@ const ConfigButton = ({
       }`}
       onClick={() => {
         setSelectedOption(optionName);
-        console.log(selectedVehicle, selectedColor);
-        setTotalPrice(1);
       }}
     >
       {text}

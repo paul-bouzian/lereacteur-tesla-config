@@ -2,12 +2,33 @@ import "./App.css";
 import ConfigButton from "./components/ConfigButton";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const calculatePrice = () => {
+      let price = 0;
+      if (selectedVehicle === "Grande Autonomie") {
+        price += 90700;
+      } else if (selectedVehicle === "Performance") {
+        price += 106700;
+      }
+
+      if (selectedColor === "Blanc Nacré Multicouches") {
+        price += 0;
+      } else if (selectedColor === "Noir Uni") {
+        price += 1000;
+      }
+
+      setTotalPrice(price);
+    };
+
+    calculatePrice();
+  }, [selectedVehicle, selectedColor]);
 
   return (
     <>
@@ -55,7 +76,7 @@ function App() {
             <ConfigButton
               selectedOption={selectedColor}
               setSelectedOption={setSelectedColor}
-              text="Noir Uni - 1000 €"
+              text="Noir Uni - 1 000 €"
               optionName={"Noir Uni"}
               setTotalPrice={setTotalPrice}
               selectedVehicle={selectedVehicle}
@@ -64,7 +85,7 @@ function App() {
           </div>
         </div>
         <div className=" mt-16 flex justify-center items-center gap-6">
-          <h1 className="text-3xl ">{totalPrice} €</h1>
+          <h1 className="text-3xl ">{totalPrice.toLocaleString()} €</h1>
           <button className="rounded shadow-inner-white bg-blue-500 text-white px-4 py-2 hover:bg-blue-400">
             Buy !
           </button>
