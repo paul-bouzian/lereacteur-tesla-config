@@ -86,7 +86,7 @@ function App() {
         </div>
         <div className=" mt-16 flex justify-center items-center gap-6">
           <h1 className="text-3xl ">{totalPrice.toLocaleString()} €</h1>
-          <button className="rounded shadow-inner-white bg-blue-500 text-white px-4 py-2 hover:bg-blue-400">
+          <button className="rounded shadow-inner-white bg-blue-500 text-white px-4 py-2 hover:bg-blue-400 active:bg-blue-600">
             Buy !
           </button>
         </div>
